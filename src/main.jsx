@@ -8,6 +8,7 @@ import ErrorPage from './error-page';
 import About from './routes/about';
 import Root from './routes/root';
 import ProductDetails from './features/product/components/ProductDetails';
+import SignUpForm from './features/auth/forms/SignUpForm';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
   {
     path: 'about',
     element: <About />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: 'auth/signup',
+    element: <SignUpForm />,
     errorElement: <ErrorPage />,
   },
   {
