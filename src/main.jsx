@@ -10,6 +10,7 @@ import Root from './routes/root';
 import ProductDetails from './features/product/components/ProductDetails';
 import SignUpForm from './features/auth/forms/SignUpForm';
 import 'react-toastify/dist/ReactToastify.css';
+import LoginForm from './features/auth/forms/LoginForm';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: 'auth/signup',
     element: <SignUpForm />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: 'auth/login',
+    element: <LoginForm />,
     errorElement: <ErrorPage />,
   },
   {

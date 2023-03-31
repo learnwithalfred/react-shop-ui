@@ -52,8 +52,7 @@ export const loginUser = createAsyncThunk(
         return response.data;
       }
     } catch (error) {
-      console.log(error);
-      dispatch(setError(error.response.data.status.message));
+      dispatch(setError(error.response.data));
     }
   }
 );

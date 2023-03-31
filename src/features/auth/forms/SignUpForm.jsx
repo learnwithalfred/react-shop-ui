@@ -8,6 +8,7 @@ import { signUpUser, selectError, selectStatus } from '../authSlice.js';
 import * as yup from 'yup';
 import './auth.css';
 import { handleToast } from '../../../components/utils/constants.js';
+
 const SignupSchema = yup.object().shape({
   email: yup
     .string()
