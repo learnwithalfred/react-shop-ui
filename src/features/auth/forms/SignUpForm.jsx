@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import { signUpUser, selectError, selectStatus } from '../authSlice.js';
 import * as yup from 'yup';
 import './auth.css';
+import { handleToast } from '../../../components/utils/constants.js';
 const SignupSchema = yup.object().shape({
   email: yup
     .string()
@@ -37,8 +39,7 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (error) {
-      alert(error);
-      console.log(error, 'error-----------------');
+      handleToast({ msg: error, type: 'error' });
     }
   }, [error]);
 
@@ -62,6 +63,7 @@ const SignUpForm = () => {
   };
   return (
     <div className="auth-container">
+      <ToastContainer />
       <h3>
         <span>Sign Up Here</span>
       </h3>

@@ -9,6 +9,7 @@ import About from './routes/about';
 import Root from './routes/root';
 import ProductDetails from './features/product/components/ProductDetails';
 import SignUpForm from './features/auth/forms/SignUpForm';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {
