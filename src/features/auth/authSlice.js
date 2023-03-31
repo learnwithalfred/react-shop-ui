@@ -5,17 +5,29 @@ import { API_URL } from '../../components/utils/constants';
 
 export const signUpUser = createAsyncThunk(
   'auth/signUpUser',
-  async ({ name, address, email, password }) => {
-    const response = await axios.post(`${API_URL}/api/auth/signup`, {
-      user: {
-        name,
-        address,
-        email,
-        password,
-      },
-    });
-    console.log(response.data, 'response.data');
-    return response.data;
+  async ({ name, address, email, password }, { dispatch }) => {
+    try {
+      const response = await axios.post(`${API_URL}/api/auth/signup`, {
+        user: {
+          name,
+          address,
+          email,
+          password,
+        },
+      });
+      if (response.status === 201) {
+        const { data } = response;
+        const user = data.data;
+        const token = response.headers.authorization;
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+
+        window.location.href = '/';
+        return response.data;
+      }
+    } catch (error) {
+      dispatch(setError(error.response.data.status.message));
+    }
   }
 );
 
@@ -30,7 +42,11 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setError(state, action) {
+      state.error = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signUpUser.pending, (state) => {
@@ -48,6 +64,11 @@ export const authSlice = createSlice({
   },
 });
 
-export const {} = authSlice.actions;
+export const { setError } = authSlice.actions;
+
+export const selectUser = (state) => state.auth.user;
+export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
+export const selectError = (state) => state.auth.error;
+export const selectStatus = (state) => state.auth.status;
 
 export default authSlice.reducer;

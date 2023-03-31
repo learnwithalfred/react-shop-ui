@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { signUpUser, selectError, selectStatus } from '../authSlice.js';
 import * as yup from 'yup';
 import './auth.css';
 const SignupSchema = yup.object().shape({
@@ -28,6 +31,17 @@ const SignupSchema = yup.object().shape({
 });
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  // const status = useSelector(selectStatus);
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      console.log(error, 'error-----------------');
+    }
+  }, [error]);
+
   const {
     register,
     handleSubmit,
@@ -36,7 +50,16 @@ const SignUpForm = () => {
     resolver: yupResolver(SignupSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    dispatch(
+      signUpUser({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        address: data.address,
+      })
+    );
+  };
   return (
     <div className="auth-container">
       <h3>
