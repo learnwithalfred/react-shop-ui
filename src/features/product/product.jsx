@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ProductList from './components/ProductList';
 
 import {
   getAllProducts,
@@ -27,9 +28,7 @@ const ProductIndex = () => {
     return <div>{error}</div>;
   }
 
-  console.log(products, 'products');
-
-  return <div>ProductIndex</div>;
+  return <ProductList products={products} />;
 };
 
 export default ProductIndex;
