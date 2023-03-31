@@ -1,6 +1,8 @@
 import React from 'react';
+import Footer from '../footer/footer';
 import Navbar from '../nav/Navbar';
-import { LOGO } from '../utils/constants';
+import './container.css';
+import { COMPANY_NAME, LOGO } from '../utils/constants';
 
 const Container = ({ children }) => {
   const loggedIn = true,
@@ -32,10 +34,10 @@ const Container = ({ children }) => {
     },
   ];
   return (
-    <div>
-      <Navbar logo={LOGO} loggedIn={loggedIn} isAdmin={isAdmin} items={items} />
-      {children}
-      Footer
+    <div className="container">
+      <Navbar items={items} logo={LOGO} loggedIn={loggedIn} isAdmin={isAdmin} />
+      <div className="content">{children}</div>
+      <Footer logo={LOGO} companyName={COMPANY_NAME} />
     </div>
   );
 };
