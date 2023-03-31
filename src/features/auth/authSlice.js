@@ -57,6 +57,12 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logOutUser = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = '/auth/login';
+};
+
 const initialState = {
   user: null,
   isAuthenticated: false,

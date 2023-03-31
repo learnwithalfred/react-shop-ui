@@ -5,8 +5,8 @@ import './container.css';
 import { COMPANY_NAME, LOGO } from '../utils/constants';
 
 const Container = ({ children }) => {
-  const loggedIn = true,
-    isAdmin = true;
+  const loggedIn = false,
+    isAdmin = false;
   const items = [
     {
       title: 'Home',
@@ -31,6 +31,18 @@ const Container = ({ children }) => {
       url: '/admin',
       icon: '⛹️‍♂️',
       access: 'admin',
+    },
+    {
+      title: 'Login',
+      url: '/auth/login',
+      icon: '⛹️‍♂️',
+      access: 'loggedOut',
+    },
+    {
+      title: 'Signup',
+      url: '/auth/signup',
+      icon: '⛹️‍♂️',
+      access: 'loggedOut',
     },
   ];
   return (

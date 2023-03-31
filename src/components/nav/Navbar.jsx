@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NavItem from './NavItem';
 import './nav.css';
+import { useDispatch } from 'react-redux';
+import { logOutUser } from '../../features/auth/authSlice';
 
 const Navbar = ({ logo, items, loggedIn, isAdmin }) => {
+  const dispatch = useDispatch();
   const filteredItems = items.filter((item) => {
     if (item.access === 'all') {
+      return true;
+    }
+    if (item.access === 'loggedOut' && !loggedIn) {
       return true;
     }
     if (item.access === 'loggedIn' && loggedIn) {
@@ -17,6 +23,10 @@ const Navbar = ({ logo, items, loggedIn, isAdmin }) => {
     return false;
   });
 
+  const handleLogout = () => {
+    dispatch(logOutUser);
+  };
+
   return (
     <div className="navbar">
       <div className="navbar__logo">
@@ -26,6 +36,11 @@ const Navbar = ({ logo, items, loggedIn, isAdmin }) => {
         {filteredItems.map((item) => (
           <NavItem key={item.title} item={item} />
         ))}
+        {loggedIn && (
+          <button className="navitem" onClick={handleLogout}>
+            <span className="navitem__title">Logout</span>
+          </button>
+        )}
       </div>
     </div>
   );
