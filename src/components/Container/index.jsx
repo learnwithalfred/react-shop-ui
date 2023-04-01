@@ -23,10 +23,10 @@ const Container = ({ children }) => {
       access: 'all',
     },
     {
-      title: 'My Profile',
-      url: '/profile',
+      title: 'Add Product',
+      url: '/products/new',
       icon: '⛹️‍♂️',
-      access: 'loggedIn',
+      access: 'admin',
     },
     {
       title: 'Admin',

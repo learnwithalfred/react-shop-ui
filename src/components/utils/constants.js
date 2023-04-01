@@ -26,3 +26,10 @@ export const handleToast = ({ msg, type = 'success' }) =>
     theme: 'colored',
     type,
   });
+
+export const gethAuthHeaders = () => {
+  const token = localStorage.getItem('token');
+  return {
+    Authorization: token,
+  };
+};
