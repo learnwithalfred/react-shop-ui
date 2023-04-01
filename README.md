@@ -56,9 +56,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Integration of React with Rails]**
-- **[State management]**
-- **[Authentication and authorization]**
+- **Integration of React with Rails**
+- **State management**
+- **Authentication and authorization**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
