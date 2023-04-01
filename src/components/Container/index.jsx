@@ -29,6 +29,12 @@ const Container = ({ children }) => {
       access: 'admin',
     },
     {
+      title: 'Orders',
+      url: '/orders',
+      icon: '⛹️‍♂️',
+      access: 'admin',
+    },
+    {
       title: 'Admin',
       url: '/admin',
       icon: '⛹️‍♂️',

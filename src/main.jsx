@@ -12,6 +12,7 @@ import SignUpForm from './features/auth/forms/SignUpForm';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginForm from './features/auth/forms/LoginForm';
 import ProductForm from './features/product/components/ProductForm';
+import OrderIndex from './features/order/order';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
   {
     path: '/products/:productId',
     element: <ProductDetails />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: 'orders',
+    element: <OrderIndex />,
     errorElement: <ErrorPage />,
   },
   {
