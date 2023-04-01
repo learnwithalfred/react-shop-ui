@@ -42,7 +42,7 @@ export const createProduct = createAsyncThunk(
         headers,
       }
     );
-    console.log(response.data, 'response.data');
+    window.location.href = '/';
     return response.data;
   }
 );
