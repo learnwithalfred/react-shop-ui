@@ -17,7 +17,7 @@ const Navbar = ({ logo, items, loggedIn, isAdmin }) => {
     if (item.access === 'loggedIn' && loggedIn) {
       return true;
     }
-    if (item.access === 'admin' && isAdmin) {
+    if (item.access === 'admin' && loggedIn && isAdmin) {
       return true;
     }
     return false;

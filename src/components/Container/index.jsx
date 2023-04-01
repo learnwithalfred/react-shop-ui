@@ -1,12 +1,14 @@
 import React from 'react';
 import Footer from '../footer/footer';
 import Navbar from '../nav/Navbar';
+import { useAuth, useAdmin } from '../utils/constants';
 import './container.css';
 import { COMPANY_NAME, LOGO } from '../utils/constants';
 
 const Container = ({ children }) => {
-  const loggedIn = false,
-    isAdmin = false;
+  const loggedIn = useAuth();
+  const isAdmin = useAdmin();
+
   const items = [
     {
       title: 'Home',
