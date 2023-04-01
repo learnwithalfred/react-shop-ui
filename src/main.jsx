@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from 'react-router-dom';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
-
 import ErrorPage from './error-page';
 import About from './routes/about';
 import Root from './routes/root';
@@ -13,6 +16,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import LoginForm from './features/auth/forms/LoginForm';
 import ProductForm from './features/product/components/ProductForm';
 import OrderIndex from './features/order/order';
+import { useAuth } from './components/utils/constants';
+
+export const PrivateRoute = ({ children }) => {
+  const auth = useAuth();
+  if (!auth) return <Navigate to="/auth/login" />;
+  return children;
+};
 
 const router = createBrowserRouter([
   {
@@ -43,12 +53,20 @@ const router = createBrowserRouter([
   },
   {
     path: 'orders',
-    element: <OrderIndex />,
+    element: (
+      <PrivateRoute>
+        <OrderIndex />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: 'products/new',
-    element: <ProductForm />,
+    element: (
+      <PrivateRoute>
+        <ProductForm />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />,
   },
 ]);
